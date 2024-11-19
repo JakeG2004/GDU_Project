@@ -61,11 +61,13 @@ public class CharacterController : MonoBehaviour
         if(moveInput > 0)
         {
             newVelocity.x = maxSpeed;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
 
         else if(moveInput < 0)
         {
             newVelocity.x = -1 * maxSpeed;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
 
         //otherwise, decelerate the object
