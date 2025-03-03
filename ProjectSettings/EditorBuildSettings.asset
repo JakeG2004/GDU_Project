@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/RubeGoldberg/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/MaterialsShaders/GameScene.unity
+    guid: 3ecbcef8258a8444796058da7ebadab9
+  - enabled: 1
+    path: Assets/MaterialsShaders/MainMenu.unity
+    guid: 3d21eff3c2f5813489896a07839f2d25
   m_configObjects: {}
