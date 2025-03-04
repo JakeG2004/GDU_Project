@@ -26,7 +26,10 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
+        if(collision.gameObject.tag == "Hazard")
+        {
+            collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage();
+        }
         Destroy(this.gameObject);
     }
 }

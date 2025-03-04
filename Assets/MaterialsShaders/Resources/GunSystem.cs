@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunSystem : MonoBehaviour
 {
-    private Transform shootPosition;
+    private Vector3 shootPosition;
 
     private AudioSource audioSrc;
 
@@ -14,10 +14,13 @@ public class GunSystem : MonoBehaviour
     [SerializeField]
     private float bulletSpeed = 30.0f;
 
+    Vector3 mousePos;
+    Vector3 playerPos;
+
     // Start is called before the first frame update
     void Start()
     {
-        audioSrc = GetComponent<AudioSource>();
+        //audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,19 +28,25 @@ public class GunSystem : MonoBehaviour
     {
         if( Input.GetKeyDown(KeyCode.Mouse1) ){
             Shoot();
-            audioSrc.Play();
+            //audioSrc.Play();
         }
+
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        playerPos = transform.parent.transform.position;
+
+        shootPosition = -3 * Vector3.Normalize(playerPos - mousePos) + playerPos;
+        transform.position = shootPosition;
     }
 
     void Shoot(){
-        shootPosition = GetComponent<Transform>();
-        Vector3 shootDirection = shootPosition.position;
-        Quaternion shootAngle = shootPosition.localRotation;
+        Vector3 newVel = Vector3.Normalize(playerPos - mousePos);
+        Vector3 shootDirection = mousePos;
+        Quaternion shootAngle = Quaternion.LookRotation(Vector3.Normalize(playerPos - mousePos), new Vector3(0, 0, 1));
         // make the bullet and give it velocity
-        GameObject newBullet = Instantiate(bullet, shootDirection, shootAngle);
+        GameObject newBullet = Instantiate(bullet, shootPosition, shootAngle);
 
         // Apply velocity
         Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(bulletSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(-1 * bulletSpeed * newVel.x, -1 * bulletSpeed * newVel.y);
     }
 }
