@@ -5,9 +5,16 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
-    private float beginningSpeed = 15.0f;
+    private float speedIncrement = 0.1f;
+
+    [SerializeField]
+    private float speedLimit = 10.0f;
 
     private Rigidbody2D rb;
+
+    private Transform playerLocation;
+
+    private Transform enemyLocation;
 
     private int health = 2;
 
@@ -17,18 +24,27 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        enemyLocation = gameObject.GetComponent<Transform>();
+        playerLocation = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(beginningSpeed, rb.velocity.y);
+        //rb.velocity = new Vector2(beginningSpeed, rb.velocity.y);
+        if(playerLocation.position.x - enemyLocation.position.x > 0 && rb.velocity.x < speedLimit){
+            rb.velocity = new Vector2(rb.velocity.x + speedIncrement, rb.velocity.y);
+        }else if(playerLocation.position.x - enemyLocation.position.x < 0 && rb.velocity.x > -speedLimit){
+            rb.velocity = new Vector2(rb.velocity.x + -speedIncrement, rb.velocity.y);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col){
+        /*
         if(col.gameObject.layer != 3){
             beginningSpeed = -beginningSpeed;
         }
+        */
     }
 
     public void TakeDamage(){

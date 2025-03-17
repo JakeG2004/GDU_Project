@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
@@ -145,6 +146,7 @@ public class CharacterController : MonoBehaviour
 
     public void ResetGame()
     {
+        /*
         // Resst lives
         lives = 3;
 
@@ -157,6 +159,8 @@ public class CharacterController : MonoBehaviour
 
         // Reset play pos
         transform.position = new Vector2(0, 0);
+        */
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
     public void QuitGame()
