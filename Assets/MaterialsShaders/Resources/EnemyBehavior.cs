@@ -20,6 +20,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private int damage = 1;
 
+    [SerializeField]
+    private float jumpOnWallForce = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +43,9 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col){
-        /*
-        if(col.gameObject.layer != 3){
-            beginningSpeed = -beginningSpeed;
+        if(col.gameObject.layer == 6 || col.gameObject.tag == "Player"){
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpOnWallForce);
         }
-        */
     }
 
     public void TakeDamage(){

@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 253131732}
   - component: {fileID: 253131731}
   - component: {fileID: 253131730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 253131729}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2df7d4652e9a9854c8a5c6e5ac8e5d6b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -941,8 +941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fd776d48b92c84890412ef1c37c6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedIncrement: 0.5
-  speedLimit: 10
+  speedIncrement: 0.1
+  speedLimit: 8
+  jumpOnWallForce: 10
 --- !u!212 &473483420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1093,7 +1094,7 @@ GameObject:
   - component: {fileID: 476074892}
   - component: {fileID: 476074891}
   - component: {fileID: 476074890}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1110,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 476074889}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2df7d4652e9a9854c8a5c6e5ac8e5d6b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1615,7 +1616,7 @@ GameObject:
   - component: {fileID: 642565826}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
