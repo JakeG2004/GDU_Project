@@ -36,6 +36,9 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private GameObject _pauseMenu;
 
+    [SerializeField] private float iTime = 0.1f;
+    private bool canTakeDamage = true;
+
     // Update is called once per frame
     void Update()
     {
@@ -121,6 +124,14 @@ public class CharacterController : MonoBehaviour
 
     void Hurt()
     {
+        if(!canTakeDamage)
+        {
+            return;
+        }
+        
+        canTakeDamage = false;
+        StartCoroutine(handleIFrames());
+
         lives--;
 
         if(lives < 3)
@@ -142,6 +153,12 @@ public class CharacterController : MonoBehaviour
             Debug.Log("Dead :(");
             deathScreen.SetActive(true);
         }
+    }
+
+    public IEnumerator handleIFrames()
+    {
+        yield return new WaitForSeconds(iTime);
+        canTakeDamage = true;
     }
 
     public void ResetGame()

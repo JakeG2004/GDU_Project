@@ -21,11 +21,14 @@ public class JumpPad : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("We are outside the if statement");
-        if(collision.gameObject.name == "Player"){
-            Debug.Log("We are in the if statement");
-            playerRb.velocity = playerRb.velocity + jumpForce;
-            audioSrc.Play();
+        Rigidbody2D otherRB = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if(!otherRB)
+        {
+            return;
         }
+        
+        otherRB.velocity = otherRB.velocity + jumpForce;
+        audioSrc.Play();
     }
 }
